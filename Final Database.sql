@@ -18,19 +18,19 @@ CREATE TABLE Animals
     Animal_id           INT IDENTITY (1, 1) PRIMARY KEY,
     Animal_name         VARCHAR(50),
     Animal_breed_id     INT FOREIGN KEY REFERENCES Animal_Breed (Animal_Breed_id),
-    Class_type          VARCHAR(50), -- what are the values for this? consider creating tblAnimal_type
+    Class_type          VARCHAR(50), -- what are the values for this? consider creating tblAnimal_type or moving to animal_breed
     DOB                 DATE,
-    Diet                VARCHAR(50), -- might be able to move value to tblAnimal_type
+    Diet                VARCHAR(50), -- might be able to move value to tblAnimal_type or animal_breed
     Alive               BIT,
     Cause_of_death      VARCHAR(50),
     Origin              VARCHAR(50),
     Date_of_acquirement DATE,
     Date_of_departure   DATE,
-    Endangered          INT -- might be able to move value to tblAnimal_type
+    Endangered          INT -- might be able to move value to tblAnimal_type or animal_breed
 )
 
 
-CREATE TABLE Related_animal
+CREATE TABLE Related_animal -- should find more to add here or remove/merge with animal_breed
 (
     Related_animal_id INT IDENTITY (1, 1) PRIMARY KEY,
     Animal_id         INT FOREIGN KEY REFERENCES Animals (Animal_id)
@@ -41,7 +41,7 @@ CREATE TABLE Zoo
     Zoo_id             INT IDENTITY (1, 1) PRIMARY KEY,
     Number_of_exhibits INT, -- redundant, can get value from querying tblExhibit(Zoo_id)
     Country            VARCHAR(50),
-    State              VARCHAR(50),
+    State              VARCHAR(50), -- consider turning into VARCHAR(2) and use state abbrev
     City               VARCHAR(50)
 )
 
