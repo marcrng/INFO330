@@ -181,7 +181,7 @@ VALUES ('Herbivore', 'Plants', , 20), -- update with autopopulated animal_id's
        ('Carnivore', 'Meat', , 25),
        ('Carnivore', 'Meat', , 25)
 
-INSERT INTO Exhibit_Type (Exhibit_type_id, Exhibit_id) --recheck after clarification of exhibit ids
+INSERT INTO Exhibit_Type (Exhibit_type_id, Exhibit_id) --recheck after clarification of exhibit id
 VALUES (01, 1),
        (02, 2),
        (03, 3),
