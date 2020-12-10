@@ -132,11 +132,16 @@ VALUES ('African Elephant', 1, 2003-04-11, 1, NULL, 'Africa', 2005-06-01, NULL, 
 
 
 INSERT INTO Zoo (Country, [State], City)
-VALUES ('United States', 'Washington', 'Ballard'),
-       ('United States', 'California', 'San Diego'),
-       ('United States', 'Texas', 'Austin'),
-       ('United States', 'Florida', 'Tallahassee'),
-       ('United States', 'New York', 'New York')
+VALUES ('United States', 'WA', 'Ballard'),
+       ('United States', 'CA', 'San Diego'),
+       ('United States', 'TX', 'Austin'),
+       ('United States', 'FL', 'Tallahassee'),
+       ('United States', 'NY', 'New York'),
+       ('United States', 'MO', 'Saint Louis'),
+       ('United States', 'PA', 'Philadelphia'),
+       ('United States', 'IL', 'Brookfield'),
+       ('United States', 'IL', 'Chicago')
+
 
 INSERT INTO Employees ([Name], E_start_date, E_end_date) --
 VALUES ('John', 2011 - 10 - 01, 2020 - 03 - 15),
@@ -172,7 +177,8 @@ VALUES (2020 - 01 - 01, 'Season Pass', 400, 'Justin', 'Bieber'),
        (2018-08-26, 'Day Pass', 50, 'Denzel', 'Curry'),
        (2015-02-09, 'Weekend Pass', 80, 'Frank', 'Ocean'),
        (2011-05-15, 'Season Pass', 400, 'Tobey', 'Maguire'),
-       (2019-03-18, 'Day Pass', 50, 'Otto', 'Brachear')
+       (2019-03-18, 'Day Pass', 50, 'Otto', 'Brachear'),
+       (2017-11-26, 'Day Pass', 50, 'Michelle', 'Bing')
 
 INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
                      Size, Ticket_id, Capacity, Exhibit_id) -- needs rechecking of exhibit id
