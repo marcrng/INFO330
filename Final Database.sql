@@ -98,7 +98,7 @@ CREATE TABLE Employee_exhibits
 )
 
 -- Insert values
-INSERT INTO Animal_breed (Family, Species) -- placing into animal_type
+INSERT INTO Animal_type (Family, Species)
 VALUES ('Elephantidae', 'Loxodonta africana'),
        ('Ursidae', 'Ailuropoda melanoleuca'),
        ('Ursidae', 'Ursus maritimus'),
