@@ -136,7 +136,7 @@ VALUES ('United States', 'Washington', 'Ballard'),
        ('United States', 'Florida', 'Tallahassee'),
        ('United States', 'New York', 'New York')
 
-INSERT INTO Employees ([Name], Job_id, E_start_date, E_end_date) --
+INSERT INTO Employees ([Name], E_start_date, E_end_date) --
 VALUES ('John', 'Janitor', 2011 - 10 - 01, 2020 - 03 - 15),
        ('Jane', 'Ticket Collector', 2013 - 9 - 11, 2018 - 03 - 07),
        ('Julia', 'Trainer', 2016 - 02 - 01, 2019 - 5 - 04),
@@ -146,7 +146,14 @@ VALUES ('John', 'Janitor', 2011 - 10 - 01, 2020 - 03 - 15),
        ('Chandler', 'Janitor', 2018 - 08 - 27, 2020 - 03 - 15),
        ('Ben', 'Trainer', 2011 - 10 - 01, 2020 - 03 - 15),
        ('Morgan', 'Ticket Collector', 2014 - 06 - 01, 2020 - 03 - 15),
-       ('Cami', 'Trainer', 2011 - 10 - 01, 2020 - 03 - 15)
+       ('Cami', 'Trainer', 2011 - 10 - 01, 2020 - 03 - 15),
+       ('Sean', 'Ticket Collector', 2018-12-03, 2019-2-03),
+       ('Five', 'Trainer', 2017-07-20, NULL),
+       ('Chad', 'Assistant Trainer', 2018-4-20, NULL),
+       ('Otto', 'Trainer', 2015-06-13, NULL),
+       ('Kane', 'Assistant Janitor', 2015-09-28, 2015-10-15),
+       ('Dylan', 'Trainer', 2018-03-23, NULL),
+       ('Timothy', 'Ticket Collector', 2008-10-22, 2012-06-13)
 
 INSERT INTO Tickets ([Date], Type_of_ticket, Cost, Customer_Fname, Customer_Lname)
 VALUES (02020 - 01 - 01, 'Season Pass', 400, 'Justin', 'Bieber'),
