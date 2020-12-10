@@ -13,7 +13,7 @@ CREATE TABLE Animal_type -- new, check if more columns required
     Species           VARCHAR(50),
     Endangered        BIT,
     Diet              VARCHAR(50),
-    Related_animal_id INT
+    Related_animal_id INT -- delete this 
 )
 
 CREATE TABLE Zoo
@@ -68,7 +68,7 @@ CREATE TABLE Employees
     Name         VARCHAR(50),
     E_start_date DATE,
     E_end_date   DATE
-)
+)  -- need to add zoo_id so we know what employees work at each zoo
 
 CREATE Table Jobs -- new
 (
@@ -82,7 +82,7 @@ CREATE TABLE Nutrients
     Diet_type     VARCHAR(50),
     Food_category VARCHAR(50),
     Animal_id     INT FOREIGN KEY REFERENCES Animals (Animal_id),
-    Amount        INT -- lbs
+    Amount        INT -- lbs per day
 )
 
 CREATE TABLE Exhibit_Type -- new
@@ -98,35 +98,35 @@ CREATE TABLE Employee_exhibits
 )
 
 -- Insert values
-INSERT INTO Animal_type (Family, Species)
-VALUES ('Elephantidae', 'Loxodonta africana'),
-       ('Ursidae', 'Ailuropoda melanoleuca'),
-       ('Ursidae', 'Ursus maritimus'),
-       ('Felidae', 'Panthera pardus'),
-       ('Felidae', 'Panthero leo'),
-       ('Phoenicopteridae', 'Phoenicopterus ruber'),
-       ('Rhinocerotidae', 'Ceratotherium simum'),
-       ('Spheniscidae', 'Eudyptes moseleyi'),
-       ('Spheniscidae', 'Aptenodytes forsteri'),
-       ('Felidae', 'Panthera tigris tigris'),
-       ('Varanidae', 'Varanus komodoensis'),
-       ('Boidae', 'Eunectes murinus')
+INSERT INTO Animal_type (Family, Species, Endangered, Diet)
+VALUES ('Elephantidae', 'Loxodonta africana', 1, 'Herbivore'),
+       ('Ursidae', 'Ailuropoda melanoleuca', 0, 'Omnivore'),
+       ('Ursidae', 'Ursus maritimus', 1, 'Omnivore'),
+       ('Felidae', 'Panthera pardus', 1, 'Carnivore'),
+       ('Felidae', 'Panthero leo', 1, 'Carnivore'),
+       ('Phoenicopteridae', 'Phoenicopterus ruber', 1, 'Herbivore'),
+       ('Rhinocerotidae', 'Ceratotherium simum', 0, 'Herbivore'),
+       ('Spheniscidae', 'Eudyptes moseleyi', 1, 'Carnivore'),
+       ('Spheniscidae', 'Aptenodytes forsteri', 1, 'Carnivore'),
+       ('Felidae', 'Panthera tigris tigris', 0, 'Carnivore'),
+       ('Varanidae', 'Varanus komodoensis', 1, 'Carnivore'),
+       ('Boidae', 'Eunectes murinus', 1, 'Carnivore')
 
-INSERT INTO Animals (Animal_name, Animal_breed_id, Class_type, DOB, Diet, Alive,
-                     Cause_of_death, Origin, Date_of_acquirement, Date_of_departure, Endangered)
-    -- update with autopopulated id's, fill in missing values
-VALUES ('African Elephant', 1111, 'Mammal',),
-       ('Giant Panda Bear', 2222, 'Mammal',),
-       ('Polar Bear', 3333, 'Mammal',),
-       ('Leopard', 4444, 'Mammal',),
-       ('Lion', 5555, 'Mammal',),
-       ('American Flamingo', 6666, 'Bird',),
-       ('White Rhino', 7777, 'Mammal',),
-       ('Northern Rockhopper Penguin', 8888, 'Bird',),
-       ('Emperor Penguin', 9999, 'Bird',),
-       ('Bengal Tiger', 1010, 'Mammal',),
-       ('Komodo Dragon', 1212, 'Reptile',),
-       ('Green Anaconda', 1313, 'Reptile',)
+INSERT INTO Animals (Animal_name, Animal_breed_id, DOB, Alive, Cause_of_death, Origin, Date_of_acquirement, 
+                    Date_of_departure, Exhibit_id) -- update with autopopulated id's, fill in missing values
+                    -- need exhbit_id to be populated
+VALUES ('African Elephant', 1, 2003-04-11, 1, NULL, 'Africa', 2005-06-01, NULL, ),
+       ('Giant Panda Bear', 2, 2001-12-09, 0, 'Disease', 'Asia', 2002-02-04, 2012-08-13, ),
+       ('Polar Bear', 3, 2008-06-05, 1, NULL, 'Antarctica', 2010-01-02, NULL, ),
+       ('Leopard', 4, 2019-02-25, 1, NULL, 'South America', 2019-05-03, NULL, ),
+       ('Lion', 5, 2016-07-12, 1, NULL, 'Africa', 2017-05-23, NULL, ),
+       ('American Flamingo', 6, 2016-10-08, 1, NULL, 'Africa', 2017-07-31, NULL, ),
+       ('White Rhino', 7, 2005-07-03, 0, 'Disease', 'Africa', 2006-01-22, 2008-09-24, ),
+       ('Northern Rockhopper Penguin', 8, 2018-11-11, 1, NULL, 'Antarctica', 2018-12-01, NULL, ),
+       ('Emperor Penguin', 9, 2020-01-01, 1, NULL, 'Antarctica', 2020-03-10, NULL, ),
+       ('Bengal Tiger', 10, 2014-03-29, 0, 'Undetermined', 'Asia', 2014-04-30, 2020-06-30, ),
+       ('Komodo Dragon', 11, 2002-04-11, 1, NULL, 'Asia', 2002-09-01, NULL, ),
+       ('Green Anaconda', 12, 2008-09-02, 1, NULL, 'South America', 2012-03-28, NULL, )
 
 
 INSERT INTO Zoo (Country, [State], City)
@@ -148,30 +148,29 @@ VALUES ('John', 'Janitor', 2011 - 10 - 01, 2020 - 03 - 15),
        ('Morgan', 'Ticket Collector', 2014 - 06 - 01, 2020 - 03 - 15),
        ('Cami', 'Trainer', 2011 - 10 - 01, 2020 - 03 - 15)
 
-INSERT INTO Tickets ([Date], Type_of_ticket, Cost, Customer_Fname, Customer_Lname
-                     ) -- need to clarify what we will do for exhibits_visited, need to clairfy what zoo each ticket is for?
+INSERT INTO Tickets ([Date], Type_of_ticket, Cost, Customer_Fname, Customer_Lname)
 VALUES (02020 - 01 - 01, 'Season Pass', 400, 'Justin', 'Bieber'),
        (02020 - 01 - 03, 'Season Pass', 400, 'Dave', 'Chapelle'),
        (02020 - 02 - 10, 'Day Pass', 50, 'Joe', 'Rogan'),
        (02020 - 02 - 11, 'Season Pass', 400, 'Kevin', 'Hart')
 
 INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
-                     Size, Ticket_id, Capacity) -- size in yards? meters? what does cost mean? if theres only one employee id and ticket id that means only one employee can work in the exhibit and one visitor can visit the exhibit?
+                     Size, Ticket_id, Capacity)
 VALUES ('Elephant Village', 'South Lawn', 8, 8111, 1001, 03, NULL, 001, 45, 2000) -- update with autopopulated id's
 
 INSERT INTO Nutrients (Diet_type, Food_category, Animal_id, Amount)
-VALUES ('Herbivore', 'Plants', 1001, 20), -- update with autopopulated id's
-       ('Omnivore', 'Plants and Meat', 1002, 5),
-       ('Omnivore', 'Plants and Meat', 1003, 3),
-       ('Carnivore', 'Meat', 1004, 10),
-       ('Carnivore', 'Meat', 1005, 3),
-       ('Herbivore', 'Plants', 1006, 7),
-       ('Herbivore', 'Plants', 1007, 15),
-       ('Carnivore', 'Fish', 1008, 12),
-       ('Carnivore', 'Fish', 1009, 13),
-       ('Carnivore', 'Meat', 1010, 23),
-       ('Carnivore', 'Meat', 1012, 25),
-       ('Carnivore', 'Meat', 1013, 25)
+VALUES ('Herbivore', 'Plants', , 20), -- update with autopopulated animal_id's
+       ('Omnivore', 'Plants and Meat', , 5),
+       ('Omnivore', 'Plants and Meat', , 3),
+       ('Carnivore', 'Meat', , 10),
+       ('Carnivore', 'Meat', , 3),
+       ('Herbivore', 'Plants', , 7),
+       ('Herbivore', 'Plants', , 15),
+       ('Carnivore', 'Fish', , 12),
+       ('Carnivore', 'Fish', , 13),
+       ('Carnivore', 'Meat', , 23),
+       ('Carnivore', 'Meat', , 25),
+       ('Carnivore', 'Meat', , 25)
 
 
 -- Create views
