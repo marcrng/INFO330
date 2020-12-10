@@ -24,14 +24,15 @@ CREATE TABLE Zoo
     City    VARCHAR(50)
 )
 
-CREATE TABLE Tickets
+CREATE TABLE Tickets -- ADDED ZOO ID BUT DIDNT CREATE A NEW TABLE YET
 (
     Ticket_id      INT IDENTITY (1, 1) PRIMARY KEY,
     Date           DATE,
     Type_of_ticket VARCHAR(50),
     Cost           INT,
     Customer_Fname VARCHAR(50),
-    Customer_Lname VARCHAR(50)
+    Customer_Lname VARCHAR(50),
+    Zoo_id INT FOREIGN KEY REFERENCES Zoo(Zoo_id)
 )
 
 CREATE TABLE Exhibit
@@ -62,12 +63,13 @@ CREATE TABLE Animals
     Exhibit_id          INT FOREIGN KEY REFERENCES Exhibit (Exhibit_id)
 )
 
-CREATE TABLE Employees
+CREATE TABLE Employees -- ADDED ZOO ID BUT DIDNT CREATE A NEW TABLE YET
 (
     Employee_id  INT IDENTITY (1, 1) PRIMARY KEY,
     Name         VARCHAR(50),
     E_start_date DATE,
-    E_end_date   DATE
+    E_end_date   DATE,
+    Zoo_id       INT FOREIGN KEY REFERENCES Zoo(Zoo_id)
 )  -- need to add zoo_id so we know what employees work at each zoo
 
 CREATE Table Jobs -- new
@@ -137,35 +139,46 @@ VALUES ('United States', 'Washington', 'Ballard'),
        ('United States', 'New York', 'New York')
 
 INSERT INTO Employees ([Name], E_start_date, E_end_date) --
-VALUES ('John', 'Janitor', 2011 - 10 - 01, 2020 - 03 - 15),
-       ('Jane', 'Ticket Collector', 2013 - 9 - 11, 2018 - 03 - 07),
-       ('Julia', 'Trainer', 2016 - 02 - 01, 2019 - 5 - 04),
-       ('Ellie', 'Trainer', 2019 - 08 - 01, 2020 - 03 - 15),
-       ('Luke', 'Assistant Trainer', 2009 - 04 - 01, 2013 - 03 - 17),
-       ('Marc', 'Janitor', 2015 - 09 - 30, 2015 - 10 - 30),
-       ('Chandler', 'Janitor', 2018 - 08 - 27, 2020 - 03 - 15),
-       ('Ben', 'Trainer', 2011 - 10 - 01, 2020 - 03 - 15),
-       ('Morgan', 'Ticket Collector', 2014 - 06 - 01, 2020 - 03 - 15),
-       ('Cami', 'Trainer', 2011 - 10 - 01, 2020 - 03 - 15),
-       ('Sean', 'Ticket Collector', 2018-12-03, 2019-2-03),
-       ('Five', 'Trainer', 2017-07-20, NULL),
-       ('Chad', 'Assistant Trainer', 2018-4-20, NULL),
-       ('Otto', 'Trainer', 2015-06-13, NULL),
-       ('Kane', 'Assistant Janitor', 2015-09-28, 2015-10-15),
-       ('Dylan', 'Trainer', 2018-03-23, NULL),
-       ('Timothy', 'Ticket Collector', 2008-10-22, 2012-06-13)
+VALUES ('John', 2011 - 10 - 01, 2020 - 03 - 15),
+       ('Jane', 2013 - 9 - 11, 2018 - 03 - 07),
+       ('Julia', 2016 - 02 - 01, 2019 - 5 - 04),
+       ('Ellie', 2019 - 08 - 01, 2020 - 03 - 15),
+       ('Luke', 2009 - 04 - 01, 2013 - 03 - 17),
+       ('Marc', 2015 - 09 - 30, 2015 - 10 - 30),
+       ('Chandler', 2018 - 08 - 27, 2020 - 03 - 15),
+       ('Ben', 2011 - 10 - 01, 2020 - 03 - 15),
+       ('Morgan', 2014 - 06 - 01, 2020 - 03 - 15),
+       ('Cami', 2011 - 10 - 01, 2020 - 03 - 15),
+       ('Sean', 2018-12-03, 2019-2-03),
+       ('Five', 2017-07-20, NULL),
+       ('Chad', 2018-4-20, NULL),
+       ('Otto', 2015-06-13, NULL),
+       ('Kane', 2015-09-28, 2015-10-15),
+       ('Dylan', 2018-03-23, NULL),
+       ('Timothy', 2008-10-22, 2012-06-13)
+
+INSERT INTO Jobs(Job_type)
+VALUES ('Janitor'), ('Ticket Collector'), ('Trainer'), ('Trainer'), ('Assistant Trainer'),
+       ('Janitor'), ('Janitor'), ('Trainer'), ('Ticket Collector'), ('Trainer'),
+       ('Ticket Collector'), ('Trainer'), ('Assistant Trainer'), ('Trainer'),
+       ('Assistant Janitor'), ('Trainer'), ('Ticket Collector')
 
 INSERT INTO Tickets ([Date], Type_of_ticket, Cost, Customer_Fname, Customer_Lname)
-VALUES (02020 - 01 - 01, 'Season Pass', 400, 'Justin', 'Bieber'),
-       (02020 - 01 - 03, 'Season Pass', 400, 'Dave', 'Chapelle'),
-       (02020 - 02 - 10, 'Day Pass', 50, 'Joe', 'Rogan'),
-       (02020 - 02 - 11, 'Season Pass', 400, 'Kevin', 'Hart')
+VALUES (2020 - 01 - 01, 'Season Pass', 400, 'Justin', 'Bieber'),
+       (2020 - 01 - 03, 'Season Pass', 400, 'Dave', 'Chapelle'),
+       (2020 - 02 - 10, 'Day Pass', 50, 'Joe', 'Rogan'),
+       (2020 - 02 - 11, 'Season Pass', 400, 'Kevin', 'Hart'),
+       (2017-03-23, 'Weekend Pass', 80, 'Kenrick', 'Lamar'),
+       (2018-08-26, 'Day Pass', 50, 'Denzel', 'Curry'),
+       (2015-02-09, 'Weekend Pass', 80, 'Frank', 'Ocean'),
+       (2011-05-15, 'Season Pass', 400, 'Tobey', 'Maguire'),
+       (2019-03-18, 'Day Pass', 50, 'Otto', 'Brachear')
 
 INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
                      Size, Ticket_id, Capacity, Exhibit_id) -- needs rechecking of exhibit id
 VALUES ('Elephant Village', 'South Lawn', 8, 1001, NULL, 1500, 001, 400, 1), -- update with autopopulated id's
        ('Polar Palace', 'South Lawn', 8, 1001, NULL, 1300, 001, 300, 2),
-       ('Pride Rock', African Grasslands, 8, 1002, NULL, 500, 002, 200, 3),
+       ('Pride Rock', 'African Grasslands', 8, 1002, NULL, 500, 002, 200, 3),
        ('Leopard Grasslands', 'South Lawn', 8, 1001, NULL, 1300, 001, 300, 4),
        ('Flamingo Pond', 'Bird Pool' 9, 1002, NULL, 900, 001, 200, 5),
        ('Penguin Palace', 'The Tundra', 8, 1003, 30, 500, 002, 200, 6),
@@ -174,20 +187,22 @@ VALUES ('Elephant Village', 'South Lawn', 8, 1001, NULL, 1500, 001, 400, 1), -- 
        ('Scales', 'South Cave', 8, 1005, 90, 80, 002, 200, 9)
 
 
-INSERT INTO Nutrients (Diet_type, Food_category, Animal_id, Amount)
-VALUES ('Herbivore', 'Plants', , 20), -- update with autopopulated animal_id's
-       ('Omnivore', 'Plants and Meat', , 5),
-       ('Omnivore', 'Plants and Meat', , 3),
-       ('Carnivore', 'Meat', , 10),
-       ('Carnivore', 'Meat', , 3),
-       ('Herbivore', 'Plants', , 7),
-       ('Herbivore', 'Plants', , 15),
-       ('Carnivore', 'Fish', , 12),
-       ('Carnivore', 'Fish', , 13),
-       ('Carnivore', 'Meat', , 23),
-       ('Carnivore', 'Meat', , 25),
-       ('Carnivore', 'Meat', , 25)
+INSERT INTO Nutrients (Diet_type, Food_category, Amount)
+VALUES ('Herbivore', 'Plants', 20), -- update with autopopulated animal_id's
+       ('Omnivore', 'Plants and Meat', 5),
+       ('Omnivore', 'Plants and Meat', 3),
+       ('Carnivore', 'Meat', 10),
+       ('Carnivore', 'Meat', 3),
+       ('Herbivore', 'Plants', 7),
+       ('Herbivore', 'Plants', 15),
+       ('Carnivore', 'Fish', 12),
+       ('Carnivore', 'Fish', 13),
+       ('Carnivore', 'Meat', 23),
+       ('Carnivore', 'Meat', 25),
+       ('Carnivore', 'Meat', 25)
 
+-- I dont think we need this |||
+--                           VVV
 INSERT INTO Exhibit_Type (Exhibit_type_id, Exhibit_id) --recheck after clarification of exhibit id
 VALUES (01, 1),
        (02, 2),
