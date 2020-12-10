@@ -6,7 +6,7 @@ USE INFO_330_Project_Team13
 
 -- Create tables
 
-CREATE TABLE Animal_type -- new, check if more columns required
+CREATE TABLE Animal_type -- new
 (
     Animal_breed_id   INT IDENTITY (1, 1) PRIMARY KEY,
     Family            VARCHAR(50),
@@ -40,12 +40,12 @@ CREATE TABLE Exhibit
     Exhibit_id   INT IDENTITY (1, 1) PRIMARY KEY,
     Exhibit_name VARCHAR(50),
     Location     VARCHAR(50),
-    Hours        INT,
+    Hours        INT, -- a day
     Zoo_id       INT FOREIGN KEY REFERENCES Zoo (Zoo_id),
-    Temperature  INT,
-    Size         INT,
-    Ticket_id    INT FOREIGN KEY REFERENCES Tickets (Ticket_id),
-    Capacity     INT,
+    Temperature  INT, -- F
+    Size         INT, -- sq ft
+    Ticket_id    INT FOREIGN KEY REFERENCES Tickets (Ticket_id), -- need to remove this, means only one ticket per exhibit which doesnt work
+    Capacity     INT, 
     Exhibit_type_id INT FOREIGN KEY REFERENCES Exhibit_type(Exhibit_type_id)
 )
 
@@ -70,7 +70,7 @@ CREATE TABLE Employees -- ADDED ZOO ID BUT DIDNT CREATE A NEW TABLE YET
     E_start_date DATE,
     E_end_date   DATE,
     Zoo_id       INT FOREIGN KEY REFERENCES Zoo(Zoo_id)
-)  -- need to add zoo_id so we know what employees work at each zoo
+) 
 
 CREATE Table Jobs -- new
 (
@@ -114,6 +114,44 @@ VALUES ('Elephantidae', 'Loxodonta africana', 1, 'Herbivore'),
        ('Varanidae', 'Varanus komodoensis', 1, 'Carnivore'),
        ('Boidae', 'Eunectes murinus', 1, 'Carnivore')
 
+
+INSERT INTO Zoo (Country, [State], City) -- I ran these values to populate zoo_id - ellie
+VALUES ('United States', 'WA', 'Ballard'),
+       ('United States', 'CA', 'San Diego'),
+       ('United States', 'TX', 'Austin'),
+       ('United States', 'NY', 'New York'),
+       ('United States', 'IL', 'Brookfield'),
+       ('United States', 'IL', 'Chicago')
+
+
+INSERT INTO Tickets ([Date], Type_of_ticket, Cost, Customer_Fname, Customer_Lname, Zoo_id)
+VALUES (2020-01 - 01, 'Season Pass', 400, 'Justin', 'Bieber', 1),
+       (2020 - 01 - 03, 'Season Pass', 400, 'Dave', 'Chapelle', 1),
+       (2020 - 02 - 10, 'Day Pass', 50, 'Joe', 'Rogan', 2),
+       (2020 - 02 - 11, 'Season Pass', 400, 'Kevin', 'Hart', 2),
+       (2017-03-23, 'Weekend Pass', 80, 'Kenrick', 'Lamar', 3),
+       (2018-08-26, 'Day Pass', 50, 'Denzel', 'Curry', 3),
+       (2015-02-09, 'Weekend Pass', 80, 'Frank', 'Ocean', 4),
+       (2011-05-15, 'Season Pass', 400, 'Tobey', 'Maguire', 4),
+       (2019-03-18, 'Day Pass', 50, 'Otto', 'Brachear', 5),
+       (2017-11-26, 'Day Pass', 50, 'Michelle', 'Bing', 5),
+       (2018-08-23, 'Day Pass', 50, 'Phoebe', 'Little', 6),
+       (2018-12-23, 'Weekend Pass', 80, 'Jane', 'Doe', 6)
+
+
+INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
+                     Size, Ticket_id, Capacity, Exhibit_type_id) -- needs rechecking of exhibit_type_id
+VALUES ('Elephant Village', 'South Lawn', 8, 1, NULL, 1500, 001, 400, 1), -- update with autopopulated id's
+       ('Polar Palace', 'South Lawn', 8, 1, NULL, 1300, 001, 300, 2),
+       ('Pride Rock', 'African Grasslands', 8, 2, NULL, 500, 002, 200, 3),
+       ('Leopard Grasslands', 'South Lawn', 8, 2, NULL, 1300, 001, 300, 4),
+       ('Flamingo Pond', 'Bird Pool', 9, 3, NULL, 900, 001, 200, 5),
+       ('Penguin Palace', 'The Tundra', 8, 4, 30, 500, 002, 200, 6),
+       ('Penguin Glacier', 'Antarctic Cave', 6, 5, 30, 500, 001, 200, 7),
+       ('Lizard Land', 'Reptile Alley', 8, 5, 92, 200, 001, 200, 8),
+       ('Scales', 'South Cave', 8, 6, 90, 80, 002, 200, 9)
+
+
 INSERT INTO Animals (Animal_name, Animal_breed_id, DOB, Alive, Cause_of_death, Origin, Date_of_acquirement, 
                     Date_of_departure, Exhibit_id) -- update with autopopulated id's, fill in missing values
                     -- need exhbit_id to be populated
@@ -131,66 +169,33 @@ VALUES ('African Elephant', 1, 2003-04-11, 1, NULL, 'Africa', 2005-06-01, NULL, 
        ('Green Anaconda', 12, 2008-09-02, 1, NULL, 'South America', 2012-03-28, NULL, )
 
 
-INSERT INTO Zoo (Country, [State], City)
-VALUES ('United States', 'WA', 'Ballard'),
-       ('United States', 'CA', 'San Diego'),
-       ('United States', 'TX', 'Austin'),
-       ('United States', 'FL', 'Tallahassee'),
-       ('United States', 'NY', 'New York'),
-       ('United States', 'MO', 'Saint Louis'),
-       ('United States', 'PA', 'Philadelphia'),
-       ('United States', 'IL', 'Brookfield'),
-       ('United States', 'IL', 'Chicago')
+INSERT INTO Employees ([Name], E_start_date, E_end_date, Zoo_id) -- zoo_id needs to be added to table
+VALUES ('John', 2011 - 10 - 01, 2020 - 03 - 15, 1),
+       ('Jane', 2013 - 9 - 11, 2018 - 03 - 07, 1),
+       ('Julia', 2016 - 02 - 01, NULL, 1),
+       ('Ellie', 2019 - 08 - 01, 2020 - 03 - 15, 2),
+       ('Luke', 2009 - 04 - 01, 2013 - 03 - 17, 2),
+       ('Marc', 2015 - 09 - 30, NULL, 2),
+       ('Chandler', 2018 - 08 - 27, 2020 - 03 - 15, 3),
+       ('Ben', 2011 - 10 - 01, 2020 - 03 - 15, 3),
+       ('Morgan', 2014 - 06 - 01, NULL, 3),
+       ('Cami', 2011 - 10 - 01, 2020 - 03 - 15, 3),
+       ('Sean', 2018-12-03, 2019-2-03, 4),
+       ('Five', 2017-07-20, NULL, 4),
+       ('Chad', 2018-4-20, NULL, 4),
+       ('Otto', 2015-06-13, NULL, 5),
+       ('Kane', 2015-09-28, 2015-10-15, 5),
+       ('Dylan', 2018-03-23, NULL, 5),
+       ('Timothy', 2008-10-22, 2012-06-13, 6),
+       ('Alexis', 2011-10-22, NULL, 6),
+       ('Jim', 2009-08-03, 2012-07-16, 6)
 
 
-INSERT INTO Employees ([Name], E_start_date, E_end_date) --
-VALUES ('John', 2011 - 10 - 01, 2020 - 03 - 15),
-       ('Jane', 2013 - 9 - 11, 2018 - 03 - 07),
-       ('Julia', 2016 - 02 - 01, 2019 - 5 - 04),
-       ('Ellie', 2019 - 08 - 01, 2020 - 03 - 15),
-       ('Luke', 2009 - 04 - 01, 2013 - 03 - 17),
-       ('Marc', 2015 - 09 - 30, 2015 - 10 - 30),
-       ('Chandler', 2018 - 08 - 27, 2020 - 03 - 15),
-       ('Ben', 2011 - 10 - 01, 2020 - 03 - 15),
-       ('Morgan', 2014 - 06 - 01, 2020 - 03 - 15),
-       ('Cami', 2011 - 10 - 01, 2020 - 03 - 15),
-       ('Sean', 2018-12-03, 2019-2-03),
-       ('Five', 2017-07-20, NULL),
-       ('Chad', 2018-4-20, NULL),
-       ('Otto', 2015-06-13, NULL),
-       ('Kane', 2015-09-28, 2015-10-15),
-       ('Dylan', 2018-03-23, NULL),
-       ('Timothy', 2008-10-22, 2012-06-13)
-
-INSERT INTO Jobs(Job_type)
-VALUES ('Janitor'), ('Ticket Collector'), ('Trainer'), ('Trainer'), ('Assistant Trainer'),
-       ('Janitor'), ('Janitor'), ('Trainer'), ('Ticket Collector'), ('Trainer'),
-       ('Ticket Collector'), ('Trainer'), ('Assistant Trainer'), ('Trainer'),
-       ('Assistant Janitor'), ('Trainer'), ('Ticket Collector')
-
-INSERT INTO Tickets ([Date], Type_of_ticket, Cost, Customer_Fname, Customer_Lname)
-VALUES (2020 - 01 - 01, 'Season Pass', 400, 'Justin', 'Bieber'),
-       (2020 - 01 - 03, 'Season Pass', 400, 'Dave', 'Chapelle'),
-       (2020 - 02 - 10, 'Day Pass', 50, 'Joe', 'Rogan'),
-       (2020 - 02 - 11, 'Season Pass', 400, 'Kevin', 'Hart'),
-       (2017-03-23, 'Weekend Pass', 80, 'Kenrick', 'Lamar'),
-       (2018-08-26, 'Day Pass', 50, 'Denzel', 'Curry'),
-       (2015-02-09, 'Weekend Pass', 80, 'Frank', 'Ocean'),
-       (2011-05-15, 'Season Pass', 400, 'Tobey', 'Maguire'),
-       (2019-03-18, 'Day Pass', 50, 'Otto', 'Brachear'),
-       (2017-11-26, 'Day Pass', 50, 'Michelle', 'Bing')
-
-INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
-                     Size, Ticket_id, Capacity, Exhibit_id) -- needs rechecking of exhibit id
-VALUES ('Elephant Village', 'South Lawn', 8, 1001, NULL, 1500, 001, 400, 1), -- update with autopopulated id's
-       ('Polar Palace', 'South Lawn', 8, 1001, NULL, 1300, 001, 300, 2),
-       ('Pride Rock', 'African Grasslands', 8, 1002, NULL, 500, 002, 200, 3),
-       ('Leopard Grasslands', 'South Lawn', 8, 1001, NULL, 1300, 001, 300, 4),
-       ('Flamingo Pond', 'Bird Pool' 9, 1002, NULL, 900, 001, 200, 5),
-       ('Penguin Palace', 'The Tundra', 8, 1003, 30, 500, 002, 200, 6),
-       ('Penguin Glacier', 'Antarctic Cave', 6, 1004, 30, 500, 001, 200, 7),
-       ('Lizard Land', 'Reptile Alley', 8, 1003, 92, 200, 001, 200, 8),
-       ('Scales', 'South Cave', 8, 1005, 90, 80, 002, 200, 9)
+INSERT INTO Jobs(Employee_id, Job_type) -- update with employee_id once it is autopopulated
+VALUES ( ,'Janitor'), ( , 'Ticket Collector'), ( , 'Trainer'), ( , 'Trainer'), ( , 'Assistant Trainer'),
+       ( , 'Janitor'), ( , 'Janitor'), ( , 'Trainer'), ( , 'Ticket Collector'), ( , 'Trainer'),
+       ( , 'Ticket Collector'), ( , 'Trainer'), ( , 'Assistant Trainer'), ( , 'Trainer'),
+       ( , 'Assistant Janitor'), ( , 'Trainer'), ( , 'Ticket Collector')
 
 
 INSERT INTO Nutrients (Diet_type, Food_category, Amount)
@@ -207,40 +212,52 @@ VALUES ('Herbivore', 'Plants', 20), -- update with autopopulated animal_id's
        ('Carnivore', 'Meat', 25),
        ('Carnivore', 'Meat', 25)
 
--- I dont think we need this |||
---                           VVV
-INSERT INTO Exhibit_Type (Exhibit_type_id, Exhibit_id) --recheck after clarification of exhibit id
-VALUES (01, 1),
-       (02, 2),
-       (03, 3),
-       (03, 4),
-       (04, 5),
-       (05, 6),
-       (05, 7),
-       (06, 8),
-       (06, 9)
+
+INSERT INTO Exhibit_Type (Exhibit_type_id, Type_name) --recheck after clarification of exhibit id
+VALUES ( , ),
+       ( , ),
+       ( , ),
+       ( , ),
+       ( , ),
+       ( ), ),
+       ( , ),
+       ( , ),
+       ( , )
+
+
+INSERT INTO Employee_exhibits (Employee_id, Exhibit_id)
+VALUES()   -- waiting for ids to be populated
 
 
 -- Create views
-/*
-1. Are the animals bred from the zoo or from an outside source?
-2. What are the causes of animal deaths when they happen?
-3. How long have the animals been at the zoo?
-4. What zoo has the highest ratio of square footage to animals?
-5. What zoo has the lowest ratio of zookeepers to animals?
-6. What zoos have the most visitors?
-7. What was the average number of customers per day between two dates?
-8. How many customers does each exhibit attract on an average day?
-9. What is the average amount of deaths per habitat across zoos?
-10. How many pounds/kilograms of food is needed on average for each enclosure?
-11. How many animals, on average, does each animal share an enclosure with at a specific group?
-12. What is the average number of total animals in each enclosure?
-13. Which states have the most zoos containing endangered animals?
-14. What's the average monthly cost of maintaining an aquarium type of exhibit?
-15. What state has the lowest average ticket price for general admission tickets?
-16. What zoo has the youngest leopard cub?
-17. What animal lives the longest on average in each zoo?
-18. Is the animal a plant based eater or a carnivorous animal, or both?
-19. How many employees have been hired for longer than a year grouped by zoo?
-20. What is the average temperature for a reptile enclosure?
-*/
+
+-- 1. Are the animals bred from the zoo or from an outside source?
+-- 2. What are the causes of animal deaths when they happen?
+
+SELECT A.Cause_of_death
+FROM Animals A
+WHERE A.Alive = 0 
+
+-- 3. How long have the animals been at the zoo?
+-- 4. What zoo has the highest ratio of square footage to animals?
+-- 5. What zoo has the lowest ratio of zookeepers to animals?
+-- 6. What zoos have the most visitors?
+
+SELECT T.zoo_id, count(T.Ticket_id)
+FROM Tickets T 
+GROUP BY T.zoo_id
+
+-- 7. What was the average number of customers per day between two dates?
+-- 8. How many customers does each exhibit attract on an average day?
+-- 9. What is the average amount of deaths per habitat across zoos?
+-- 10. How many pounds/kilograms of food is needed on average for each enclosure?
+-- 11. How many animals, on average, does each animal share an enclosure with at a specific group?
+-- 12. What is the average number of total animals in each enclosure?
+-- 13. Which states have the most zoos containing endangered animals?
+-- 14. What's the average monthly cost of maintaining an aquarium type of exhibit?
+-- 15. What state has the lowest average ticket price for general admission tickets?
+-- 16. What zoo has the youngest leopard cub?
+-- 17. What animal lives the longest on average in each zoo?
+-- 18. Is the animal a plant based eater or a carnivorous animal, or both?
+-- 19. How many employees have been hired for longer than a year grouped by zoo?
+-- 20. What is the average temperature for a reptile enclosure?
