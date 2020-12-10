@@ -24,11 +24,80 @@ CREATE TABLE Zoo
     City    VARCHAR(50)
 )
 
+CREATE TABLE Tickets
+(
+    Ticket_id      INT IDENTITY (1, 1) PRIMARY KEY,
+    Date           DATE,
+    Type_of_ticket VARCHAR(50),
+    Cost           INT,
+    Customer_Fname VARCHAR(50),
+    Customer_Lname VARCHAR(50)
+)
 
+CREATE TABLE Exhibit
+(
+    Exhibit_id   INT IDENTITY (1, 1) PRIMARY KEY,
+    Exhibit_name VARCHAR(50),
+    Location     VARCHAR(50),
+    Hours        INT,
+    Zoo_id       INT FOREIGN KEY REFERENCES Zoo (Zoo_id),
+    Temperature  INT,
+    Size         INT,
+    Ticket_id    INT FOREIGN KEY REFERENCES Tickets (Ticket_id),
+    Capacity     INT
+)
 
+CREATE TABLE Animals
+(
+    Animal_id           INT IDENTITY (1, 1) PRIMARY KEY,
+    Animal_name         VARCHAR(50),
+    Animal_breed_id     INT FOREIGN KEY REFERENCES Animal_type(Animal_Breed_id),
+    DOB                 DATE,
+    Alive               BIT,
+    Cause_of_death      VARCHAR(50),
+    Origin              VARCHAR(50),
+    Date_of_acquirement DATE,
+    Date_of_departure   DATE,
+    Exhibit_id          INT FOREIGN KEY REFERENCES Exhibit (Exhibit_id)
+)
+
+CREATE TABLE Employees
+(
+    Employee_id  INT IDENTITY (1, 1) PRIMARY KEY,
+    Name         VARCHAR(50),
+    E_start_date DATE,
+    E_end_date   DATE
+)
+
+CREATE Table Jobs -- new
+(
+    Job_id      INT IDENTITY (1,1) PRIMARY KEY,
+    Employee_id INT FOREIGN KEY REFERENCES Employees (Employee_id),
+    Job_type    VARCHAR(50)
+)
+
+CREATE TABLE Nutrients
+(
+    Diet_type     VARCHAR(50),
+    Food_category VARCHAR(50),
+    Animal_id     INT FOREIGN KEY REFERENCES Animals (Animal_id),
+    Amount        INT -- lbs
+)
+
+CREATE TABLE Exhibit_Type -- new
+(
+   Exhibit_Type_id INT IDENTITY (1, 1) PRIMARY KEY,
+   Type_name VARCHAR(50),
+)
+
+CREATE TABLE Employee_exhibits
+(
+    Employee_id INT FOREIGN KEY REFERENCES Employees(Employee_id),
+    Exhibit_id INT FOREIGN KEY REFERENCES Exhibit(Exhibit_id)
+)
 
 -- Insert values
-INSERT INTO Animal_type (Family, Species) -- placing into animal_type
+INSERT INTO Animal_breed (Family, Species) -- placing into animal_type
 VALUES ('Elephantidae', 'Loxodonta africana'),
        ('Ursidae', 'Ailuropoda melanoleuca'),
        ('Ursidae', 'Ursus maritimus'),
