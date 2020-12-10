@@ -155,8 +155,17 @@ VALUES (02020 - 01 - 01, 'Season Pass', 400, 'Justin', 'Bieber'),
        (02020 - 02 - 11, 'Season Pass', 400, 'Kevin', 'Hart')
 
 INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
-                     Size, Ticket_id, Capacity)
-VALUES ('Elephant Village', 'South Lawn', 8, 8111, 1001, 03, NULL, 001, 45, 2000) -- update with autopopulated id's
+                     Size, Ticket_id, Capacity, Exhibit_id) -- needs rechecking of exhibit id
+VALUES ('Elephant Village', 'South Lawn', 8, 1001, NULL, 1500, 001, 400, 1), -- update with autopopulated id's
+       ('Polar Palace', 'South Lawn', 8, 1001, NULL, 1300, 001, 300, 2),
+       ('Pride Rock', African Grasslands, 8, 1002, NULL, 500, 002, 200, 3),
+       ('Leopard Grasslands', 'South Lawn', 8, 1001, NULL, 1300, 001, 300, 4),
+       ('Flamingo Pond', 'Bird Pool' 9, 1002, NULL, 900, 001, 200, 5),
+       ('Penguin Palace', 'The Tundra', 8, 1003, 30, 500, 002, 200, 6),
+       ('Penguin Glacier', 'Antarctic Cave', 6, 1004, 30, 500, 001, 200, 7),
+       ('Lizard Land', 'Reptile Alley', 8, 1003, 92, 200, 001, 200, 8),
+       ('Scales', 'South Cave', 8, 1005, 90, 80, 002, 200, 9)
+
 
 INSERT INTO Nutrients (Diet_type, Food_category, Animal_id, Amount)
 VALUES ('Herbivore', 'Plants', , 20), -- update with autopopulated animal_id's
@@ -171,6 +180,17 @@ VALUES ('Herbivore', 'Plants', , 20), -- update with autopopulated animal_id's
        ('Carnivore', 'Meat', , 23),
        ('Carnivore', 'Meat', , 25),
        ('Carnivore', 'Meat', , 25)
+
+INSERT INTO Exhibit_Type (Exhibit_type_id, Exhibit_id) --recheck after clarification of exhibit ids
+VALUES (01, 1),
+       (02, 2),
+       (03, 3),
+       (03, 4),
+       (04, 5),
+       (05, 6),
+       (05, 7),
+       (06, 8),
+       (06, 9)
 
 
 -- Create views
