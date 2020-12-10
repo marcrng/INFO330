@@ -44,7 +44,8 @@ CREATE TABLE Exhibit
     Temperature  INT,
     Size         INT,
     Ticket_id    INT FOREIGN KEY REFERENCES Tickets (Ticket_id),
-    Capacity     INT
+    Capacity     INT,
+    Exhibit_type_id INT FOREIGN KEY REFERENCES Exhibit_type(Exhibit_type_id)
 )
 
 CREATE TABLE Animals
