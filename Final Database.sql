@@ -179,8 +179,8 @@ INSERT INTO Animals (Animal_name, Animal_breed_id, DOB, Alive, Cause_of_death, O
                     -- need exhbit_id to be populated
 VALUES ('African Elephant', 1, '2003-04-11', 1, NULL, 'Africa', '2005-06-01', NULL, ),
        ('Giant Panda Bear', 2, '2001-12-09', 0, 'Disease', 'Asia', '2002-02-04', '2012-08-13', ),
-       ('Polar Bear', 3, '2008-06-05', 1, NULL, 'Antarctica', '2010-01-02', NULL, ),
-       ('Leopard', 4, '2019-02-25', 1, NULL, 'South America', '2019-05-03', NULL, ),
+       ('Polar Bear', 3, '2008-06-05', 1, NULL, 'North America', '2010-01-02', NULL, ),
+       ('Leopard', 4, '2019-02-25', 1, NULL, 'Africa', '2019-05-03', NULL, ),
        ('Lion', 5, '2016-07-12', 1, NULL, 'Africa', '2017-05-23', NULL, ),
        ('American Flamingo', 6, '2016-10-08', 1, NULL, 'Africa', '2017-07-31', NULL, ),
        ('White Rhino', 7, '2005-07-03', 0, 'Disease', 'Africa', '2006-01-22', '2008-09-24', ),
@@ -188,7 +188,23 @@ VALUES ('African Elephant', 1, '2003-04-11', 1, NULL, 'Africa', '2005-06-01', NU
        ('Emperor Penguin', 9, '2020-01-01', 1, NULL, 'Antarctica', '2020-03-10', NULL, ),
        ('Bengal Tiger', 10, '2014-03-29', 0, 'Undetermined', 'Asia', '2014-04-30', '2020-06-30', ),
        ('Komodo Dragon', 11, '2002-04-11', 1, NULL, 'Asia', '2002-09-01', NULL, ),
-       ('Green Anaconda', 12, '2008-09-02', 1, NULL, 'South America', '2012-03-28', NULL, )
+       ('Green Anaconda', 12, '2008-09-02', 1, NULL, 'South America', '2012-03-28', NULL, ),
+       ('Komodo Dragon', 11, '2009-8-2', 1, NULL, 'Asia', '2011-2-5', NULL, ),
+       ('Northern Rockhopper Penguin', 8, '2013-8-18', 1, NULL, 'Antarctica', '2017-12-8', NULL, ),
+       ('African Flamingo', 6, '2010-11-6', 1, NULL, 'Africa', '2011-12-21', NULL, ),
+       ('Leopard', 4, '2016-10-19', 1, NULL, 'Africa', '2019-1-21', NULL, ),
+       ('White Rhino', 7, '2011-1-10', 1, NULL, 'Africa', '2015-8-16', NULL, ),
+       ('African Elephant', 1, '2008-12-21', 1, NULL, 'Africa', '2009-1-1', NULL, ),
+       ('Giant Panda Bear', 2, '1995-4-18', 0, 'Senile', 'Asia', '2020-11-20', '2020-5-20', ),
+       ('Northern Rockhopper Penguin', 8, '2009-4-5', 1, NULL, 'Antarctica', '2014-7-27', NULL, ),
+       ('White Rhino', 7, '2011-8-18', 1, NULL, 'Africa', '2015-1-13', NULL, ),
+       ('African Elephant', 1, '2017-12-16', 1, NULL, 'Africa', '2020-9-14', NULL, ),
+       ('Leopard', 4, '2012-10-26', 1, NULL, 'Africa', '2016-11-3', NULL, ),
+       ('Emporor Penguin', 9, '2014-12-24', 0, 'Janitor Negligence', 'Antarctica', '2015-3-16', ),
+       ('Emporor Penguin', 9, '2014-12-7', 0, 'Janitor Negligence', 'Antarctica', '2015-5-7', ),
+       ('Polar Bear', 3, '2017-2-18', 1, NULL, 'North America', '2020-6-18', NULL, ),
+       ('Komodo Dragon', 11, '2014-11-24', 1, NULL, 'Asia', '2019-11-12', NULL, ),
+       ('White Rhino', 7, '2017-6-27', 1, NULL, 'Africa', '2020-1-6', NULL, ),
 
 
 INSERT INTO Employees ([Name], E_start_date, E_end_date, Zoo_id) -- DO NOT ADD TO THIS
