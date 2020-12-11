@@ -301,6 +301,18 @@ FROM zoo_visitors
 -- 11. How many animals, on average, does each animal share an enclosure with at a specific group?
 -- 12. What is the average number of total animals in each enclosure?
 -- 13. Which states have the most zoos containing endangered animals?
+
+CREATE VIEW Endangered_count AS
+
+SELECT TOP 3 Z.State, Z.City, COUNT(A.Animal_id) AS Endangered_count
+FROM Animals A
+JOIN Animal_type T on A.Animal_breed_id = T.Animal_breed_id
+JOIN Exhibit E on A.Exhibit_id = E.Exhibit_id
+JOIN Zoo Z on E.Zoo_id = Z.Zoo_id
+WHERE T.Endangered = 1
+GROUP BY Z.State, Z.City
+ORDER BY Endangered_count DESC
+
 -- 14. What's the average monthly cost of maintaining an aquarium type of exhibit?
 -- 15. What state has the lowest average ticket price for general admission tickets?
 -- 16. What zoo has the youngest leopard cub?
