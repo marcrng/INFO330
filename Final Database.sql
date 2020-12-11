@@ -271,8 +271,7 @@ VALUES (1, 1), (2, 2), (2, 1), (3, 1), -- zoo 1
 
 -- Create views
 
--- 1. Are the animals bred from the zoo or from an outside source?
--- 2. What are the causes of animal deaths when they happen?
+-- 1. What are the causes of animal deaths when they happen?
 CREATE VIEW [death_causes] AS 
 SELECT DISTINCT A.Cause_of_death
 FROM Animals A
@@ -282,10 +281,7 @@ SELECT *
 FROM death_causes
 
 
--- 3. How long have the animals been at the zoo?
--- 4. What zoo has the highest ratio of square footage to animals?
--- 5. What zoo has the lowest ratio of zookeepers to animals?
--- 6. What zoos have the most visitors?
+-- 2. What zoos have the most visitors?
 CREATE VIEW [zoo_visitors] AS
 SELECT T.zoo_id, count(T.Ticket_id) AS num_tix
 FROM Tickets T 
@@ -294,14 +290,8 @@ GROUP BY T.zoo_id
 SELECT *
 FROM zoo_visitors
 
--- 7. What was the average number of customers per day between two dates?
--- 8. How many customers does each exhibit attract on an average day?
--- 9. What is the average amount of deaths per habitat across zoos?
--- 10. How many pounds/kilograms of food is needed on average for each enclosure?
--- 11. How many animals, on average, does each animal share an enclosure with at a specific group?
--- 12. What is the average number of total animals in each enclosure?
--- 13. Which states have the most zoos containing endangered animals?
 
+-- 3. Which states have the most zoos containing endangered animals?
 CREATE VIEW Endangered_count AS
 
 SELECT TOP 3 Z.State, Z.City, COUNT(A.Animal_id) AS Endangered_count
@@ -313,9 +303,8 @@ WHERE T.Endangered = 1
 GROUP BY Z.State, Z.City
 ORDER BY Endangered_count DESC
 
--- 14. What's the average monthly cost of maintaining an aquarium type of exhibit?
--- 15. What state has the lowest average ticket price for general admission tickets?
--- 16. What zoo has the youngest leopard cub?
+
+-- 4. What zoo has the youngest leopard cub?
 CREATE VIEW leo_cub AS
 
 SELECT TOP 1 A.animal_name, A.DOB, Z.Zoo_id, Z.City, Z.[State]
@@ -327,9 +316,8 @@ ORDER BY A.DOB DESC
 Select *
 from leo_cub
 
--- 17. What animal lives the longest on average in each zoo?
--- 18. Is the animal a plant based eater or a carnivorous animal, or both?
 
+-- 5. Is the animal a plant based eater or a carnivorous animal, or both?
 CREATE VIEW Animal_diet AS
 
 SELECT DISTINCT A.Animal_name, T.Diet
@@ -337,7 +325,7 @@ FROM Animals A
 JOIN Animal_type T on A.Animal_breed_id = T.Animal_breed_id
 
 
--- 19. How many employees have been hired for longer than a year grouped by zoo?
+-- 6. How many employees have been hired for longer than a year grouped by zoo?
 CREATE VIEW [Employees_hired_longer_than_year] AS
 SELECT COUNT(*) AS Amount_of_Employees
 FROM Employees AS E
@@ -346,4 +334,3 @@ GROUP BY E.Zoo_id
 
 SELECT *
 FROM [Employees_hired_longer_than_year]
--- 20. What is the average temperature for a reptile enclosure?
