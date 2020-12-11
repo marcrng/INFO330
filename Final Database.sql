@@ -317,6 +317,14 @@ from leo_cub
 
 -- 17. What animal lives the longest on average in each zoo?
 -- 18. Is the animal a plant based eater or a carnivorous animal, or both?
+
+CREATE VIEW Animal_diet AS
+
+SELECT DISTINCT A.Animal_name, T.Diet
+FROM Animals A
+JOIN Animal_type T on A.Animal_breed_id = T.Animal_breed_id
+
+
 -- 19. How many employees have been hired for longer than a year grouped by zoo?
 CREATE VIEW [Employees_hired_longer_than_year] AS
 SELECT COUNT(*) AS Amount_of_Employees
