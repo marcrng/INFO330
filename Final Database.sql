@@ -154,8 +154,8 @@ VALUES ('2020-01-01', 'Season Pass', 400, 'Justin', 'Bieber', 1),
 
 
 INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
-                     Size, Capacity, Exhibit_type_id) -- needs rechecking of exhibit_type_id
-VALUES ('Elephant Village', 'South Lawn', 8, 1, NULL, 1500, 400, 2), -- update with autopopulated id's
+                     Size, Capacity, Exhibit_type_id)
+VALUES ('Elephant Village', 'South Lawn', 8, 1, NULL, 1500, 400, 2),
        ('Polar Palace', 'South Lawn', 8, 1, NULL, 1300, 300, 2),
        ('Pride Rock', 'African Grasslands', 8, 2, NULL, 500, 200, 2),
        ('Leopard Grasslands', 'South Lawn', 8, 2, NULL, 1300, 300, 3),
@@ -167,9 +167,8 @@ VALUES ('Elephant Village', 'South Lawn', 8, 1, NULL, 1500, 400, 2), -- update w
        ('Bamboo Forest', 'Mountain Range', 8, 2, NULL, 800, 200, 2),
        ('Mangrove Swamp', 'Forests', 8, 3, NULL, 1000, 250, 2)
 
-SELECT * FROM Exhibit
 
-INSERT INTO Exhibits_visited (Ticket_id, Exhibit_id) -- no one mess with this lol very confusing
+INSERT INTO Exhibits_visited (Ticket_id, Exhibit_id)
 VALUES (1, 1), (2, 1), (3, 1), (4, 1), (1, 2), (2, 2), -- zoo 1
         (5, 3), (6, 3), (7, 3), (8, 4), (5, 4), (6, 4), (7, 4), -- zoo 2
         (9, 5), (10, 5), (11, 5), (12, 5), -- zoo 3
@@ -179,8 +178,7 @@ VALUES (1, 1), (2, 1), (3, 1), (4, 1), (1, 2), (2, 2), -- zoo 1
 
 
 INSERT INTO Animals (Animal_name, Animal_breed_id, DOB, Alive, Cause_of_death, Origin, Date_of_acquirement, 
-                    Date_of_departure, Exhibit_id) -- update with autopopulated id's, fill in missing values
-                    -- need exhbit_id to be populated
+                    Date_of_departure, Exhibit_id)
 VALUES ('African Elephant', 1, '2003-04-11', 1, NULL, 'Africa', '2005-06-01', NULL, 1),
        ('Giant Panda Bear', 2, '2001-12-09', 0, 'Disease', 'Asia', '2002-02-04', '2012-08-13', 10),
        ('Polar Bear', 3, '2008-06-05', 1, NULL, 'North America', '2010-01-02', NULL, 2),
@@ -204,11 +202,11 @@ VALUES ('African Elephant', 1, '2003-04-11', 1, NULL, 'Africa', '2005-06-01', NU
        ('White Rhino', 7, '2011-8-18', 1, NULL, 'Africa', '2015-1-13', NULL, 3),
        ('African Elephant', 1, '2017-12-16', 1, NULL, 'Africa', '2020-9-14', NULL, 1),
        ('Leopard', 4, '2012-10-26', 1, NULL, 'Africa', '2016-11-3', NULL, 4),
-       ('Emporor Penguin', 9, '2014-12-24', 0, 'Janitor Negligence', 'Antarctica', '2015-3-16', 7),
-       ('Emporor Penguin', 9, '2014-12-7', 0, 'Janitor Negligence', 'Antarctica', '2015-5-7', 7),
+       ('Emporor Penguin', 9, '2014-12-24', 0, 'Janitor Negligence', 'Antarctica', '2015-3-16', '2018-02-19', 7),
+       ('Emporor Penguin', 9, '2014-12-7', 0, 'Janitor Negligence', 'Antarctica', '2015-5-7', '2018-02-20', 7),
        ('Polar Bear', 3, '2017-2-18', 1, NULL, 'North America', '2020-6-18', NULL, 2),
        ('Komodo Dragon', 11, '2014-11-24', 1, NULL, 'Asia', '2019-11-12', NULL, 8),
-       ('White Rhino', 7, '2017-6-27', 1, NULL, 'Africa', '2020-1-6', NULL, 3),
+       ('White Rhino', 7, '2017-6-27', 1, NULL, 'Africa', '2020-1-6', NULL, 3)
 
 
 INSERT INTO Employees ([Name], E_start_date, E_end_date, Zoo_id) -- DO NOT ADD TO THIS
@@ -241,30 +239,35 @@ VALUES (1,'Janitor'), (2, 'Ticket Collector'), (3, 'Trainer'), (4, 'Trainer'), (
 
 
 INSERT INTO Nutrients (Diet_type, Food_category, Animal_id, Amount)
-VALUES ('Herbivore', 'Plants', , 20), -- update with autopopulated animal_id's
-       ('Omnivore', 'Plants and Meat', , 5),
-       ('Omnivore', 'Plants and Meat', , 3),
-       ('Carnivore', 'Meat', , 10),
-       ('Carnivore', 'Meat', , 3),
-       ('Herbivore', 'Plants', , 7),
-       ('Herbivore', 'Plants', , 15),
-       ('Carnivore', 'Fish', , 12),
-       ('Carnivore', 'Fish', , 13),
-       ('Carnivore', 'Meat', , 23),
-       ('Carnivore', 'Meat', , 25),
-       ('Carnivore', 'Meat', , 25)
+VALUES ('Herbivore', 'Plants', 2, 20), ('Omnivore', 'Plants and Meat', 3, 5),
+       ('Omnivore', 'Plants and Meat', 4, 3), ('Carnivore', 'Meat', 5, 10),
+       ('Carnivore', 'Meat', 6, 3), ('Herbivore', 'Plants', 7, 7),
+       ('Herbivore', 'Plants', 8, 15), ('Carnivore', 'Fish', 9, 12),
+       ('Carnivore', 'Fish', 10, 13), ('Carnivore', 'Meat', 11, 23),
+       ('Carnivore', 'Meat', 12, 25), ('Carnivore', 'Meat', 13, 25),
+       ('Carnivore', 'Meat', 14, 25), ('Carnivore', 'Fish', 15, 12),
+       ('Herbivore', 'Plants', 16, 7), ('Carnivore', 'Meat', 17, 10),
+       ('Herbivore', 'Plants', 18, 15), ('Herbivore', 'Plants', 19, 20), 
+       ('Omnivore', 'Plants and Meat', 20, 5), ('Carnivore', 'Fish', 21, 12),
+       ('Herbivore', 'Plants', 22, 15), ('Herbivore', 'Plants', 23, 20),
+       ('Carnivore', 'Meat', 24, 10), ('Carnivore', 'Fish', 25, 13),
+       ('Carnivore', 'Fish', 26, 13), ('Omnivore', 'Plants and Meat', 27, 3),
+       ('Carnivore', 'Meat', 28, 25), ('Herbivore', 'Plants', 29, 15)
 
 
-INSERT INTO Exhibit_Type (Type_name) -- <- something wrong with this
+INSERT INTO Exhibit_Type (Type_name)
 VALUES ('Indoor'),
        ('Outdoor'),
        ('Combined Indoor and Outdoor')
-       
 
 
 INSERT INTO Employee_exhibits (Employee_id, Exhibit_id)
-VALUES()   -- waiting for exhibit_id to be populated
-
+VALUES (1, 1), (2, 2), (2, 1), (3, 1), -- zoo 1
+        (4, 3), (5, 3), (5, 10), (6, 3), -- zoo 2
+        (7, 5), (8, 5), (9, 5), (10, 5), -- zoo 3
+        (11, 6), (12, 6), (13, 6), -- zoo 4
+        (14, 7), (15, 7), (16, 8), -- zoo 5
+        (17, 9), (18, 9), (19, 9) -- zoo 6
 
 -- Create views
 
