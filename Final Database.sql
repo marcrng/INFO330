@@ -138,7 +138,7 @@ VALUES ('2020-01-01', 'Season Pass', 400, 'Justin', 'Bieber', 1),
        ('2020-02-10', 'Day Pass', 50, 'Lee', 'Brice', 2),
        ('2020-02-11', 'Season Pass', 600, 'Kevin', 'Hart', 2),
        ('2020-02-11', 'Season Pass', 600, 'Joy', 'Hart', 2),
-       ('2017-03-23', 'Weekend Pass', 80, 'Kenrick', 'Lamar', 3),
+       ('2017-03-23', 'Weekend Pass', 80, 'Kendrick', 'Lamar', 3),
        ('2017-03-23', 'Weekend Pass', 80, 'Kendall', 'Lamar', 3),
        ('2018-08-26', 'Day Pass', 50, 'Denzel', 'Curry', 3),
        ('2018-08-26', 'Season Pass', 350, 'Steph', 'Curry', 3),
@@ -154,16 +154,20 @@ VALUES ('2020-01-01', 'Season Pass', 400, 'Justin', 'Bieber', 1),
 
 
 INSERT INTO Exhibit (Exhibit_name, [Location], [Hours], Zoo_id, Temperature,
-                     Size, Ticket_id, Capacity, Exhibit_type_id) -- needs rechecking of exhibit_type_id
-VALUES ('Elephant Village', 'South Lawn', 8, 1, NULL, 1500, 001, 400, 2), -- update with autopopulated id's
-       ('Polar Palace', 'South Lawn', 8, 1, NULL, 1300, 001, 300, 2),
-       ('Pride Rock', 'African Grasslands', 8, 2, NULL, 500, 002, 200, 2),
-       ('Leopard Grasslands', 'South Lawn', 8, 2, NULL, 1300, 001, 300, 3),
-       ('Flamingo Pond', 'Bird Pool', 9, 3, NULL, 900, 001, 200, 2),
-       ('Penguin Palace', 'The Tundra', 8, 4, 30, 500, 002, 200, 3),
-       ('Penguin Glacier', 'Antarctic Cave', 6, 5, 30, 500, 001, 200, 3),
-       ('Lizard Land', 'Reptile Alley', 8, 5, 92, 200, 001, 200, 1),
-       ('Scales', 'South Cave', 8, 6, 90, 80, 002, 200, 1)
+                     Size, Capacity, Exhibit_type_id) -- needs rechecking of exhibit_type_id
+VALUES ('Elephant Village', 'South Lawn', 8, 1, NULL, 1500, 400, 2), -- update with autopopulated id's
+       ('Polar Palace', 'South Lawn', 8, 1, NULL, 1300, 300, 2),
+       ('Pride Rock', 'African Grasslands', 8, 2, NULL, 500, 200, 2),
+       ('Leopard Grasslands', 'South Lawn', 8, 2, NULL, 1300, 300, 3),
+       ('Flamingo Pond', 'Bird Pool', 9, 3, NULL, 900, 200, 2),
+       ('Penguin Palace', 'The Tundra', 8, 4, 30, 500, 200, 3),
+       ('Penguin Glacier', 'Antarctic Cave', 6, 5, 30, 500, 200, 3),
+       ('Lizard Land', 'Reptile Alley', 8, 5, 92, 200, 200, 1),
+       ('Scales', 'South Cave', 8, 6, 90, 80, 200, 1),
+       ('Bamboo Forest', 'Mountain Range', 8, 2, NULL, 800, 200, 2),
+       ('Mangrove Swamp', 'Forests', 8, 3, NULL, 1000, 250, 2)
+
+SELECT * FROM Exhibit
 
 INSERT INTO Exhibits_visited (Ticket_id, Exhibit_id) -- no one mess with this lol very confusing
 VALUES (1, 1), (2, 1), (3, 1), (4, 1), (1, 2), (2, 2), -- zoo 1
@@ -177,34 +181,34 @@ VALUES (1, 1), (2, 1), (3, 1), (4, 1), (1, 2), (2, 2), -- zoo 1
 INSERT INTO Animals (Animal_name, Animal_breed_id, DOB, Alive, Cause_of_death, Origin, Date_of_acquirement, 
                     Date_of_departure, Exhibit_id) -- update with autopopulated id's, fill in missing values
                     -- need exhbit_id to be populated
-VALUES ('African Elephant', 1, '2003-04-11', 1, NULL, 'Africa', '2005-06-01', NULL, ),
-       ('Giant Panda Bear', 2, '2001-12-09', 0, 'Disease', 'Asia', '2002-02-04', '2012-08-13', ),
-       ('Polar Bear', 3, '2008-06-05', 1, NULL, 'North America', '2010-01-02', NULL, ),
-       ('Leopard', 4, '2019-02-25', 1, NULL, 'Africa', '2019-05-03', NULL, ),
-       ('Lion', 5, '2016-07-12', 1, NULL, 'Africa', '2017-05-23', NULL, ),
-       ('American Flamingo', 6, '2016-10-08', 1, NULL, 'Africa', '2017-07-31', NULL, ),
-       ('White Rhino', 7, '2005-07-03', 0, 'Disease', 'Africa', '2006-01-22', '2008-09-24', ),
-       ('Northern Rockhopper Penguin', 8, '2018-11-11', 1, NULL, 'Antarctica', '2018-12-01', NULL, ),
-       ('Emperor Penguin', 9, '2020-01-01', 1, NULL, 'Antarctica', '2020-03-10', NULL, ),
-       ('Bengal Tiger', 10, '2014-03-29', 0, 'Undetermined', 'Asia', '2014-04-30', '2020-06-30', ),
-       ('Komodo Dragon', 11, '2002-04-11', 1, NULL, 'Asia', '2002-09-01', NULL, ),
-       ('Green Anaconda', 12, '2008-09-02', 1, NULL, 'South America', '2012-03-28', NULL, ),
-       ('Komodo Dragon', 11, '2009-8-2', 1, NULL, 'Asia', '2011-2-5', NULL, ),
-       ('Northern Rockhopper Penguin', 8, '2013-8-18', 1, NULL, 'Antarctica', '2017-12-8', NULL, ),
-       ('African Flamingo', 6, '2010-11-6', 1, NULL, 'Africa', '2011-12-21', NULL, ),
-       ('Leopard', 4, '2016-10-19', 1, NULL, 'Africa', '2019-1-21', NULL, ),
-       ('White Rhino', 7, '2011-1-10', 1, NULL, 'Africa', '2015-8-16', NULL, ),
-       ('African Elephant', 1, '2008-12-21', 1, NULL, 'Africa', '2009-1-1', NULL, ),
-       ('Giant Panda Bear', 2, '1995-4-18', 0, 'Senile', 'Asia', '2020-11-20', '2020-5-20', ),
-       ('Northern Rockhopper Penguin', 8, '2009-4-5', 1, NULL, 'Antarctica', '2014-7-27', NULL, ),
-       ('White Rhino', 7, '2011-8-18', 1, NULL, 'Africa', '2015-1-13', NULL, ),
-       ('African Elephant', 1, '2017-12-16', 1, NULL, 'Africa', '2020-9-14', NULL, ),
-       ('Leopard', 4, '2012-10-26', 1, NULL, 'Africa', '2016-11-3', NULL, ),
-       ('Emporor Penguin', 9, '2014-12-24', 0, 'Janitor Negligence', 'Antarctica', '2015-3-16', ),
-       ('Emporor Penguin', 9, '2014-12-7', 0, 'Janitor Negligence', 'Antarctica', '2015-5-7', ),
-       ('Polar Bear', 3, '2017-2-18', 1, NULL, 'North America', '2020-6-18', NULL, ),
-       ('Komodo Dragon', 11, '2014-11-24', 1, NULL, 'Asia', '2019-11-12', NULL, ),
-       ('White Rhino', 7, '2017-6-27', 1, NULL, 'Africa', '2020-1-6', NULL, ),
+VALUES ('African Elephant', 1, '2003-04-11', 1, NULL, 'Africa', '2005-06-01', NULL, 1),
+       ('Giant Panda Bear', 2, '2001-12-09', 0, 'Disease', 'Asia', '2002-02-04', '2012-08-13', 10),
+       ('Polar Bear', 3, '2008-06-05', 1, NULL, 'North America', '2010-01-02', NULL, 2),
+       ('Leopard', 4, '2019-02-25', 1, NULL, 'Africa', '2019-05-03', NULL, 4),
+       ('Lion', 5, '2016-07-12', 1, NULL, 'Africa', '2017-05-23', NULL, 3),
+       ('American Flamingo', 6, '2016-10-08', 1, NULL, 'Africa', '2017-07-31', NULL, 5),
+       ('White Rhino', 7, '2005-07-03', 0, 'Disease', 'Africa', '2006-01-22', '2008-09-24', 3),
+       ('Northern Rockhopper Penguin', 8, '2018-11-11', 1, NULL, 'Antarctica', '2018-12-01', NULL,7 ),
+       ('Emperor Penguin', 9, '2020-01-01', 1, NULL, 'Antarctica', '2020-03-10', NULL, 7),
+       ('Bengal Tiger', 10, '2014-03-29', 0, 'Undetermined', 'Asia', '2014-04-30', '2020-06-30', 11),
+       ('Komodo Dragon', 11, '2002-04-11', 1, NULL, 'Asia', '2002-09-01', NULL, 8),
+       ('Green Anaconda', 12, '2008-09-02', 1, NULL, 'South America', '2012-03-28', NULL, 9),
+       ('Komodo Dragon', 11, '2009-8-2', 1, NULL, 'Asia', '2011-2-5', NULL, 8),
+       ('Northern Rockhopper Penguin', 8, '2013-8-18', 1, NULL, 'Antarctica', '2017-12-8', NULL,7),
+       ('African Flamingo', 6, '2010-11-6', 1, NULL, 'Africa', '2011-12-21', NULL, 5),
+       ('Leopard', 4, '2016-10-19', 1, NULL, 'Africa', '2019-1-21', NULL, 4),
+       ('White Rhino', 7, '2011-1-10', 1, NULL, 'Africa', '2015-8-16', NULL, 1),
+       ('African Elephant', 1, '2008-12-21', 1, NULL, 'Africa', '2009-1-1', NULL, 1),
+       ('Giant Panda Bear', 2, '1995-4-18', 0, 'Senile', 'Asia', '2020-11-20', '2020-5-20', 10),
+       ('Northern Rockhopper Penguin', 8, '2009-4-5', 1, NULL, 'Antarctica', '2014-7-27', NULL, 7),
+       ('White Rhino', 7, '2011-8-18', 1, NULL, 'Africa', '2015-1-13', NULL, 3),
+       ('African Elephant', 1, '2017-12-16', 1, NULL, 'Africa', '2020-9-14', NULL, 1),
+       ('Leopard', 4, '2012-10-26', 1, NULL, 'Africa', '2016-11-3', NULL, 4),
+       ('Emporor Penguin', 9, '2014-12-24', 0, 'Janitor Negligence', 'Antarctica', '2015-3-16', 7),
+       ('Emporor Penguin', 9, '2014-12-7', 0, 'Janitor Negligence', 'Antarctica', '2015-5-7', 7),
+       ('Polar Bear', 3, '2017-2-18', 1, NULL, 'North America', '2020-6-18', NULL, 2),
+       ('Komodo Dragon', 11, '2014-11-24', 1, NULL, 'Asia', '2019-11-12', NULL, 8),
+       ('White Rhino', 7, '2017-6-27', 1, NULL, 'Africa', '2020-1-6', NULL, 3),
 
 
 INSERT INTO Employees ([Name], E_start_date, E_end_date, Zoo_id) -- DO NOT ADD TO THIS
@@ -251,10 +255,10 @@ VALUES ('Herbivore', 'Plants', , 20), -- update with autopopulated animal_id's
        ('Carnivore', 'Meat', , 25)
 
 
-INSERT INTO Exhibit_Type (Exhibit_type_id, Type_name) -- <- something wrong with this
-VALUES ( 1, 'Indoor'),
-        ( 2, 'Outdoor'),
-        ( 3, 'Combined Indoor and Outdoor')
+INSERT INTO Exhibit_Type (Type_name) -- <- something wrong with this
+VALUES ('Indoor'),
+       ('Outdoor'),
+       ('Combined Indoor and Outdoor')
        
 
 
