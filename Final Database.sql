@@ -304,6 +304,17 @@ FROM zoo_visitors
 -- 14. What's the average monthly cost of maintaining an aquarium type of exhibit?
 -- 15. What state has the lowest average ticket price for general admission tickets?
 -- 16. What zoo has the youngest leopard cub?
+CREATE VIEW leo_cub AS
+
+SELECT TOP 1 A.animal_name, A.DOB, Z.Zoo_id, Z.City, Z.[State]
+FROM Animals A JOIN Exhibit E ON A.exhibit_id = E.Exhibit_id
+               JOIN Zoo Z ON E.Zoo_id = Z.Zoo_id
+WHERE A.Animal_name = 'Leopard'
+ORDER BY A.DOB DESC
+
+Select *
+from leo_cub
+
 -- 17. What animal lives the longest on average in each zoo?
 -- 18. Is the animal a plant based eater or a carnivorous animal, or both?
 -- 19. How many employees have been hired for longer than a year grouped by zoo?
