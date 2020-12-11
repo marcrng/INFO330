@@ -43,3 +43,14 @@ FROM endangered E JOIN Animals A ON E.animal_breed_id = A.Animal_breed_id
     JOIN Exhibit H ON A.Exhibit_ide ON H.Exhibit_id 
     JOIN Zoo Z ON H.zoo_id = Z.zoo_id 
 GROUP BY Z.State
+
+
+-- 19. How many employees have been hired for longer than a year grouped by zoo?
+CREATE VIEW [Employees_hired_longer_than_year] AS
+SELECT COUNT(*) AS Amount_of_Employees
+FROM Employees AS E
+WHERE DATEDIFF(year, E_start_date, E_end_date) > 1
+GROUP BY E.Zoo_id
+
+SELECT *
+FROM [Employees_hired_longer_than_year]
