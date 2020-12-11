@@ -293,4 +293,12 @@ GROUP BY T.zoo_id
 -- 17. What animal lives the longest on average in each zoo?
 -- 18. Is the animal a plant based eater or a carnivorous animal, or both?
 -- 19. How many employees have been hired for longer than a year grouped by zoo?
+CREATE VIEW [Employees_hired_longer_than_year] AS
+SELECT COUNT(*) AS Amount_of_Employees
+FROM Employees AS E
+WHERE DATEDIFF(year, E_start_date, E_end_date) > 1
+GROUP BY E.Zoo_id
+
+SELECT *
+FROM [Employees_hired_longer_than_year]
 -- 20. What is the average temperature for a reptile enclosure?
