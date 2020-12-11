@@ -273,19 +273,26 @@ VALUES (1, 1), (2, 2), (2, 1), (3, 1), -- zoo 1
 
 -- 1. Are the animals bred from the zoo or from an outside source?
 -- 2. What are the causes of animal deaths when they happen?
-
-SELECT A.Cause_of_death
+CREATE VIEW [death_causes] AS 
+SELECT DISTINCT A.Cause_of_death
 FROM Animals A
 WHERE A.Alive = 0 
+
+SELECT *
+FROM death_causes
+
 
 -- 3. How long have the animals been at the zoo?
 -- 4. What zoo has the highest ratio of square footage to animals?
 -- 5. What zoo has the lowest ratio of zookeepers to animals?
 -- 6. What zoos have the most visitors?
-
-SELECT T.zoo_id, count(T.Ticket_id)
+CREATE VIEW [zoo_visitors] AS
+SELECT T.zoo_id, count(T.Ticket_id) AS num_tix
 FROM Tickets T 
 GROUP BY T.zoo_id
+
+SELECT *
+FROM zoo_visitors
 
 -- 7. What was the average number of customers per day between two dates?
 -- 8. How many customers does each exhibit attract on an average day?
